@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HH Auto Repair – Trusted MOT testing, mechanical repairs, bodywork and advanced diagnostics in Bicester, Oxfordshire." />
+  <title>HH Auto Repair | Bicester, Oxfordshire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET & BASE ────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --red:     #e02020;
+      --red-dim: #a01515;
+      --bg:      #0f0f0f;
+      --bg2:     #161616;
+      --bg3:     #1e1e1e;
+      --border:  #2a2a2a;
+      --text:    #f0f0f0;
+      --muted:   #888;
+      --font-head: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── SCROLLBAR ───────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--red); }
+
+    /* ── UTILITY ─────────────────────────────────────────── */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: all 0.22s ease;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+    }
+    .btn-primary:hover {
+      background: #ff2f2f;
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+    }
+    .btn-outline:hover {
+      border-color: var(--red);
+      color: var(--red);
+      transform: translateY(-2px);
+    }
+
+    /* ── REVEAL ANIMATION ────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    #nav.scrolled {
+      background: rgba(15,15,15,0.97);
+      box-shadow: 0 1px 0 var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 6px 100%);
+    }
+    .logo-badge span {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text strong {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .logo-text small {
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-head);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-phone {
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-phone:hover { color: var(--red); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(15,15,15,0.98);
+      border-top: 1px solid var(--border);
+      padding: 20px 24px 28px;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--red); }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+
+    /* Diagonal grid background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(224,32,32,0.04) 0%, transparent 60%),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: auto, 60px 60px, 60px 60px;
+      background-position: 0 0, -1px -1px, -1px -1px;
+    }
+
+    /* Red side stripe */
+    .hero-stripe {
+      position: absolute;
+      top: 0; bottom: 0;
+      right: 38%;
+      width: 4px;
+      background: var(--red);
+      opacity: 0.4;
+    }
+
+    /* Big background text */
+    .hero-watermark {
+      position: absolute;
+      bottom: -0.15em;
+      right: -0.05em;
+      font-family: var(--font-head);
+      font-size: clamp(8rem, 18vw, 18rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.025);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #bbb;
+      line-height: 1.7;
+      max-width: 500px;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s forwards;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 60px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.45s forwards;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.55s forwards;
+    }
+    .hero-stat {}
+    .hero-stat strong {
+      display: block;
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+    }
+    .hero-stat span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.9s forwards;
+    }
+    .scroll-hint span {
+      font-family: var(--font-head);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid var(--muted);
+      border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg);
+      animation: bounce 1.4s infinite;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(5px); }
+    }
+
+    /* ── SERVICES ─────────────────────────────────────────── */
+    #services {
+      padding: 110px 0;
+      background: var(--bg2);
+      position: relative;
+    }
+    #services::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--red) 40%, transparent);
+    }
+
+    .services-header {
+      margin-bottom: 64px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .service-card {
+      background: var(--bg2);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 3px;
+      background: var(--red);
+      transition: width 0.35s ease;
+    }
+    .service-card:hover::after { width: 100%; }
+    .service-card:hover { background: var(--bg3); }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .service-icon svg {
+      width: 44px;
+      height: 44px;
+      stroke: var(--red);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-num {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      font-family: var(--font-head);
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-head);
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── WHY US ───────────────────────────────────────────── */
+    #why {
+      padding: 110px 0;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .why-left .section-subtitle {
+      margin-bottom: 44px;
+      max-width: 420px;
+    }
+
+    .why-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .pillar {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pillar:first-child { border-top: 1px solid var(--border); }
+
+    .pillar-num {
+      font-family: var(--font-head);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+      min-width: 60px;
+    }
+    .pillar-text h4 {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .pillar-text p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* Stats panel */
+    .why-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+    }
+    .stat-box {
+      background: var(--bg2);
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-box.accent { background: var(--red); }
+    .stat-box.accent .stat-num,
+    .stat-box.accent .stat-label { color: #fff; }
+
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-box.accent .stat-num { font-size: 3.8rem; }
+
+    .stat-label {
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .stat-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* ── HOURS & LOCATION ─────────────────────────────────── */
+    #contact {
+      padding: 110px 0;
+      background: var(--bg2);
+      position: relative;
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--red) 40%, transparent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* Hours table */
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 32px;
+    }
+    .hours-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .hours-table td {
+      padding: 14px 0;
+      font-size: 0.95rem;
+    }
+    .hours-table td:first-child {
+      font-family: var(--font-head);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .hours-table td:last-child {
+      text-align: right;
+      font-weight: 500;
+    }
+    .badge-closed {
+      display: inline-block;
+      padding: 2px 10px;
+      background: var(--border);
+      color: var(--muted);
+      font-family: var(--font-head);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .badge-open {
+      display: inline-block;
+      padding: 2px 10px;
+      background: rgba(224,32,32,0.15);
+      color: var(--red);
+      font-family: var(--font-head);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Contact right */
+    .contact-right .section-subtitle {
+      margin-bottom: 36px;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 44px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-item:first-child { border-top: 1px solid var(--border); }
+
+    .ci-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(224,32,32,0.1);
+      border: 1px solid rgba(224,32,32,0.2);
+    }
+    .ci-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--red);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ci-body {}
+    .ci-label {
+      font-family: var(--font-head);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .ci-value {
+      font-size: 0.98rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .ci-value a {
+      transition: color 0.2s;
+    }
+    .ci-value a:hover { color: var(--red); }
+
+    .map-embed {
+      width: 100%;
+      height: 220px;
+      border: 1px solid var(--border);
+      filter: grayscale(1) brightness(0.4) contrast(1.2);
+      transition: filter 0.3s;
+    }
+    .map-embed:hover {
+      filter: grayscale(0.5) brightness(0.6);
+    }
+
+    /* ── BOOK CTA BAND ────────────────────────────────────── */
+    #book {
+      padding: 80px 0;
+      background: var(--red);
+      position: relative;
+      overflow: hidden;
+    }
+    #book::before {
+      content: 'BOOK';
+      position: absolute;
+      right: -0.05em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-head);
+      font-size: clamp(6rem, 15vw, 14rem);
+      font-weight: 900;
+      color: rgba(0,0,0,0.12);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .book-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .book-text h2 {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .book-text p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+    }
+    .book-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--red);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+      padding: 14px 32px;
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.22s ease;
+    }
+    .btn-white:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.5);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+      padding: 14px 32px;
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.22s ease;
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      padding: 36px 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { gap: 52px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-phone { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-stats { gap: 28px; }
+      .hero-stat strong { font-size: 1.8rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 32px 24px; }
+
+      .why-grid { grid-template-columns: 1fr; gap: 48px; }
+      .why-right { grid-template-columns: 1fr 1fr; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 52px; }
+
+      .book-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { justify-content: center; }
+      .why-right { grid-template-columns: 1fr; }
+      .book-ctas { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ─────────────────────────────────────────── -->
+  <nav id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          <div class="logo-badge"><span>HH</span></div>
+          <div class="logo-text">
+            <strong>Auto Repair</strong>
+            <small>Bicester, Oxfordshire</small>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <a href="tel:07999934040" class="nav-phone">07999 934040</a>
+          <a href="mailto:Hhautorepairox@gmail.com" class="btn btn-primary">Book Now</a>
+          <div class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#hero" class="mob-link">Home</a>
+      <a href="#services" class="mob-link">Services</a>
+      <a href="#why" class="mob-link">About</a>
+      <a href="#contact" class="mob-link">Contact &amp; Hours</a>
+      <a href="mailto:Hhautorepairox@gmail.com" class="mob-link">Book Online</a>
+      <a href="tel:07999934040" class="mob-link">07999 934040</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-stripe"></div>
+    <div class="hero-watermark">Auto</div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Bicester &amp; Oxfordshire</div>
+        <h1 class="hero-title">
+          Trusted<br>Auto <em>Repair</em><br>&amp; Bodywork
+        </h1>
+        <p class="hero-sub">
+          MOT testing, mechanical repairs, advanced diagnostics and bodywork — all under one roof at Grange Farm Industrial Estate.
+        </p>
+        <div class="hero-ctas">
+          <a href="mailto:Hhautorepairox@gmail.com" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="3,4 12,13 21,4"/></svg>
+            Book Now
+          </a>
+          <a href="tel:07999934040" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            Call Us
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>MOT</strong>
+            <span>Testing Available</span>
+          </div>
+          <div class="hero-stat">
+            <strong>5★</strong>
+            <span>Customer Service</span>
+          </div>
+          <div class="hero-stat">
+            <strong>Sat</strong>
+            <span>Open Saturdays</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ─────────────────────────────────────── -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header reveal">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">From your annual MOT to complex bodywork repairs, we cover every aspect of vehicle care with precision and transparency.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- MOT Testing -->
+        <div class="service-card reveal">
+          <div class="service-num">01</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3>MOT Testing</h3>
+          <p>Official DVSA-authorised MOT testing for Class 4, 5 and 7 vehicles. Fast turnaround with honest, transparent results.</p>
+        </div>
+
+        <!-- Mechanical Repairs -->
+        <div class="service-card reveal">
+          <div class="service-num">02</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.77 3.77z"/></svg>
+          </div>
+          <h3>Mechanical Repairs</h3>
+          <p>Brakes, suspension, clutch, engine work and full servicing — all makes and models handled by experienced technicians.</p>
+        </div>
+
+        <!-- Bodywork & Dent Repair -->
+        <div class="service-card reveal">
+          <div class="service-num">03</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v4h-7V8zM5 17v4M15 17v4"/></svg>
+          </div>
+          <h3>Bodywork &amp; Dent Repair</h3>
+          <p>Accident repair, panel beating, paintwork and PDR (paintless dent removal) to restore your vehicle to showroom condition.</p>
+        </div>
+
+        <!-- Advanced Diagnostics -->
+        <div class="service-card reveal">
+          <div class="service-num">04</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>Advanced Diagnostics</h3>
+          <p>State-of-the-art OBD diagnostics to pinpoint warning lights and hidden faults — so you only pay to fix what actually needs fixing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY US ─────────────────────────────────────────── -->
+  <section id="why">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-left reveal">
+          <div class="section-label">Why Choose Us</div>
+          <h2 class="section-title">Quality You Can<br><em style="color:var(--red);font-style:normal;">Count On</em></h2>
+          <p class="section-subtitle">We're a local, family-run workshop. No call centres, no upselling — just straight-talking advice and quality workmanship.</p>
+
+          <div class="why-pillars">
+            <div class="pillar">
+              <div class="pillar-num">01</div>
+              <div class="pillar-text">
+                <h4>Transparent Pricing</h4>
+                <p>We provide clear quotes before any work begins. No hidden costs, no surprises on your final bill.</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-num">02</div>
+              <div class="pillar-text">
+                <h4>All Makes &amp; Models</h4>
+                <p>From city cars to commercial vehicles, our technicians are trained across the full spectrum of manufacturers.</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-num">03</div>
+              <div class="pillar-text">
+                <h4>Fast Turnaround</h4>
+                <p>We respect your time. Most jobs completed same day; we keep you updated throughout the process.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-right reveal">
+          <div class="stat-box accent">
+            <div class="stat-num">MOT</div>
+            <div class="stat-label">Authorised Station</div>
+            <div class="stat-desc">DVSA registered &amp; compliant</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Sat</div>
+            <div class="stat-label">Open Saturdays</div>
+            <div class="stat-desc">9am – 1pm for your convenience</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Core Services</div>
+            <div class="stat-desc">Everything under one roof</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">OX25</div>
+            <div class="stat-label">Bicester Based</div>
+            <div class="stat-desc">Serving all of Oxfordshire</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT & HOURS ─────────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Hours -->
+        <div class="reveal">
+          <div class="section-label">Opening Hours</div>
+          <h2 class="section-title">When We're<br>Open</h2>
+          <table class="hours-table">
+            <tr>
+              <td>Monday</td>
+              <td><span class="badge-open">Open</span> &nbsp;08:30 – 17:30</td>
+            </tr>
+            <tr>
+              <td>Tuesday</td>
+              <td><span class="badge-open">Open</span> &nbsp;08:30 – 17:30</td>
+            </tr>
+            <tr>
+              <td>Wednesday</td>
+              <td><span class="badge-open">Open</span> &nbsp;08:30 – 17:30</td>
+            </tr>
+            <tr>
+              <td>Thursday</td>
+              <td><span class="badge-open">Open</span> &nbsp;08:30 – 17:30</td>
+            </tr>
+            <tr>
+              <td>Friday</td>
+              <td><span class="badge-open">Open</span> &nbsp;08:30 – 17:30</td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td><span class="badge-open">Open</span> &nbsp;09:00 – 13:00</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td><span class="badge-closed">Closed</span></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Contact details -->
+        <div class="contact-right reveal">
+          <div class="section-label">Get In Touch</div>
+          <h2 class="section-title">Find &amp; Contact<br>Us</h2>
+          <p class="section-subtitle">Come visit us at Grange Farm Industrial Estate, or get in touch to book your vehicle in.</p>
+
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="ci-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="ci-body">
+                <div class="ci-label">Address</div>
+                <div class="ci-value">Unit 4–5, Grange Farm Industrial Estate<br>Little Chesterton, Bicester<br>OX25 3PD</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+              </div>
+              <div class="ci-body">
+                <div class="ci-label">Phone</div>
+                <div class="ci-value"><a href="tel:07999934040">07999 934040</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+              </div>
+              <div class="ci-body">
+                <div class="ci-label">Email</div>
+                <div class="ci-value"><a href="mailto:Hhautorepairox@gmail.com">Hhautorepairox@gmail.com</a></div>
+              </div>
+            </div>
+          </div>
+
+          <iframe
+            class="map-embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2466.8!2d-1.15!3d51.92!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876c49f0d5a1a7b%3A0x1!2sGrange+Farm+Industrial+Estate%2C+Little+Chesterton%2C+OX25+3PD!5e0!3m2!1sen!2suk!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="HH Auto Repair location map">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BOOK CTA ───────────────────────────────────────── -->
+  <section id="book">
+    <div class="container">
+      <div class="book-inner reveal">
+        <div class="book-text">
+          <h2>Ready to Book<br>Your Vehicle In?</h2>
+          <p>Get in touch today — we'll get you back on the road.</p>
+        </div>
+        <div class="book-ctas">
+          <a href="mailto:Hhautorepairox@gmail.com" class="btn-white">
+            Email Us to Book
+          </a>
+          <a href="tel:07999934040" class="btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            07999 934040
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-copy">
+          &copy; 2025 HH Auto Repair Ltd. Unit 4–5 Grange Farm Industrial Estate, Little Chesterton, OX25 3PD.
+        </div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+          <a href="tel:07999934040">07999 934040</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── JS ─────────────────────────────────────────────── -->
+  <script>
+    // Sticky nav background on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Live open/closed indicator in nav
+    function updateNavStatus() {
+      const now = new Date();
+      const day = now.getDay(); // 0=Sun, 1=Mon...6=Sat
+      const h = now.getHours(), m = now.getMinutes();
+      const time = h * 60 + m;
+      let isOpen = false;
+      if (day >= 1 && day <= 5 && time >= 8*60+30 && time < 17*60+30) isOpen = true;
+      if (day === 6 && time >= 9*60 && time < 13*60) isOpen = true;
+      const indicator = document.createElement('span');
+      indicator.style.cssText = `
+        display:inline-flex;align-items:center;gap:6px;
+        font-family:var(--font-head);font-size:0.72rem;font-weight:700;
+        letter-spacing:0.1em;text-transform:uppercase;
+        color:${isOpen ? '#22c55e' : '#ef4444'};
+        margin-right:12px;
+      `;
+      indicator.innerHTML = `<span style="width:7px;height:7px;border-radius:50%;background:${isOpen ? '#22c55e' : '#ef4444'};display:inline-block;"></span>${isOpen ? 'Open Now' : 'Closed'}`;
+      document.querySelector('.nav-cta').prepend(indicator);
+    }
+    updateNavStatus();
+  </script>
+</body>
+</html>
