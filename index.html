@@ -73,28 +73,19 @@
     }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 
-    .logo { display: flex; align-items: center; gap: 14px; }
-    .logo-icon {
-      background: var(--red);
-      width: 50px; height: 50px;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .logo-icon::after {
-      content: '';
-      position: absolute;
-      right: -10px; top: 0; bottom: 0;
-      border-left: 10px solid var(--red);
-      border-top: 25px solid transparent;
-      border-bottom: 25px solid transparent;
-    }
-    .logo-icon span { font-family: var(--head); font-size: 1.5rem; color: #fff; letter-spacing: 0.02em; }
+    .logo { display: flex; align-items: center; gap: 13px; }
+    .logo-badge { flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(212,43,43,0.35)); }
     .logo-name {
-      padding-left: 10px;
       display: flex; flex-direction: column; line-height: 1.15;
     }
-    .logo-name strong { font-family: var(--head); font-size: 1.5rem; letter-spacing: 0.06em; color: var(--white); }
-    .logo-name small { font-family: var(--sub); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
+    .logo-name strong {
+      font-family: var(--head); font-size: 1.45rem; letter-spacing: 0.1em;
+      color: var(--white); text-transform: uppercase;
+    }
+    .logo-name small {
+      font-family: var(--sub); font-size: 0.58rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey);
+    }
 
     .nav-links { list-style: none; display: flex; gap: 6px; }
     .nav-links a {
@@ -434,9 +425,6 @@
     footer { background: var(--dark2); border-top: 3px solid var(--dark4); padding: 40px 0; }
     .footer-in { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
     .footer-logo { display: flex; align-items: center; gap: 12px; }
-    .footer-logo .logo-icon { width: 38px; height: 38px; }
-    .footer-logo .logo-icon::after { border-top: 19px solid transparent; border-bottom: 19px solid transparent; right: -8px; border-left-width: 8px; }
-    .footer-logo .logo-icon span { font-size: 1.1rem; }
     .footer-brand strong { font-family: var(--sub); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; display: block; }
     .footer-brand small { font-size: 0.68rem; color: var(--grey); letter-spacing: 0.12em; }
     .footer-links { display: flex; gap: 28px; }
@@ -590,9 +578,39 @@
     <div class="container">
       <div class="nav-inner">
         <a href="#hero" class="logo">
-          <div class="logo-icon"><span>HH</span></div>
+          <svg class="logo-badge" xmlns="http://www.w3.org/2000/svg" width="46" height="54" viewBox="0 0 54 64">
+            <defs>
+              <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e03535"/>
+                <stop offset="100%" stop-color="#a81818"/>
+              </linearGradient>
+              <linearGradient id="dg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1c1c1c"/>
+                <stop offset="100%" stop-color="#0a0a0a"/>
+              </linearGradient>
+            </defs>
+            <!-- Shield: red top -->
+            <path d="M2,2 L52,2 L52,21 L2,21 Z" fill="url(#rg)"/>
+            <!-- Shield: dark body with point -->
+            <path d="M2,21 L52,21 L52,45 L27,62 L2,45 Z" fill="url(#dg)"/>
+            <!-- Outer border -->
+            <path d="M2,2 L52,2 L52,45 L27,62 L2,45 Z" fill="none" stroke="#d42b2b" stroke-width="1.8"/>
+            <!-- Inner detail border -->
+            <path d="M6,6 L48,6 L48,44 L27,58 L6,44 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+            <!-- Divider line + diamond accent -->
+            <line x1="6" y1="21" x2="22" y2="21" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <polygon points="27,18.5 29.5,21 27,23.5 24.5,21" fill="rgba(255,255,255,0.55)"/>
+            <line x1="32" y1="21" x2="48" y2="21" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <!-- AUTO REPAIR label -->
+            <text x="27" y="15" font-family="Inter,sans-serif" font-size="5.2" font-weight="700" fill="rgba(255,255,255,0.92)" text-anchor="middle" letter-spacing="2.2">AUTO REPAIR</text>
+            <!-- HH Monogram -->
+            <text x="27" y="49" font-family="Bebas Neue,sans-serif" font-size="27" fill="white" text-anchor="middle" letter-spacing="3">HH</text>
+            <!-- Corner shine dots -->
+            <circle cx="10" cy="11.5" r="1.2" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="44" cy="11.5" r="1.2" fill="rgba(255,255,255,0.3)"/>
+          </svg>
           <div class="logo-name">
-            <strong>Auto Repair</strong>
+            <strong>HH Auto Repair</strong>
             <small>Bicester · Oxfordshire</small>
           </div>
         </a>
@@ -1099,7 +1117,22 @@
     <div class="container">
       <div class="footer-in">
         <a href="#hero" class="footer-logo">
-          <div class="logo-icon"><span>HH</span></div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="42" viewBox="0 0 54 64" style="filter:drop-shadow(0 2px 6px rgba(212,43,43,0.3))">
+            <defs>
+              <linearGradient id="rg2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e03535"/><stop offset="100%" stop-color="#a81818"/>
+              </linearGradient>
+            </defs>
+            <path d="M2,2 L52,2 L52,21 L2,21 Z" fill="url(#rg2)"/>
+            <path d="M2,21 L52,21 L52,45 L27,62 L2,45 Z" fill="#111"/>
+            <path d="M2,2 L52,2 L52,45 L27,62 L2,45 Z" fill="none" stroke="#d42b2b" stroke-width="1.8"/>
+            <path d="M6,6 L48,6 L48,44 L27,58 L6,44 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+            <line x1="6" y1="21" x2="22" y2="21" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <polygon points="27,18.5 29.5,21 27,23.5 24.5,21" fill="rgba(255,255,255,0.55)"/>
+            <line x1="32" y1="21" x2="48" y2="21" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+            <text x="27" y="15" font-family="Inter,sans-serif" font-size="5.2" font-weight="700" fill="rgba(255,255,255,0.92)" text-anchor="middle" letter-spacing="2.2">AUTO REPAIR</text>
+            <text x="27" y="49" font-family="Bebas Neue,sans-serif" font-size="27" fill="white" text-anchor="middle" letter-spacing="3">HH</text>
+          </svg>
           <div class="footer-brand">
             <strong>HH Auto Repair</strong>
             <small>Bicester, Oxfordshire · OX25 3PD</small>
