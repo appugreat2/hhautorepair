@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 64" width="54" height="64">
+  <defs>
+    <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e03535"/>
+      <stop offset="100%" stop-color="#a81818"/>
+    </linearGradient>
+    <linearGradient id="dg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c1c1c"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <path d="M2,2 L52,2 L52,21 L2,21 Z" fill="url(#rg)"/>
+  <path d="M2,21 L52,21 L52,45 L27,62 L2,45 Z" fill="url(#dg)"/>
+  <path d="M2,2 L52,2 L52,45 L27,62 L2,45 Z" fill="none" stroke="#d42b2b" stroke-width="1.8"/>
+  <path d="M6,6 L48,6 L48,44 L27,58 L6,44 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+  <line x1="6" y1="21" x2="22" y2="21" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+  <polygon points="27,18.5 29.5,21 27,23.5 24.5,21" fill="rgba(255,255,255,0.55)"/>
+  <line x1="32" y1="21" x2="48" y2="21" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+  <text x="27" y="15" font-family="Arial,sans-serif" font-size="5.2" font-weight="700" fill="rgba(255,255,255,0.92)" text-anchor="middle" letter-spacing="2">AUTO REPAIR</text>
+  <text x="27" y="49" font-family="Arial Black,sans-serif" font-size="27" font-weight="900" fill="white" text-anchor="middle" letter-spacing="3">HH</text>
+</svg>
